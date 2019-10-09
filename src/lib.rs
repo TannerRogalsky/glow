@@ -109,6 +109,8 @@ pub trait HasContext {
 
     unsafe fn get_program_link_status(&self, program: Self::Program) -> bool;
 
+    unsafe fn get_program_parameter_i32(&self, program: Self::Program, parameter: u32) -> i32;
+
     unsafe fn get_program_info_log(&self, program: Self::Program) -> String;
 
     unsafe fn get_active_uniforms(&self, program: Self::Program) -> u32;

@@ -218,10 +218,14 @@ impl HasContext for Context {
     }
 
     unsafe fn get_program_link_status(&self, program: Self::Program) -> bool {
+        1 == self.get_program_parameter_i32(program, LINK_STATUS)
+    }
+
+    unsafe fn get_program_parameter_i32(&self, program: Self::Program, parameter: u32) -> i32 {
         let gl = &self.raw;
-        let mut status = 0;
-        gl.GetProgramiv(program, LINK_STATUS, &mut status);
-        1 == status
+        let mut param_out = 0;
+        gl.GetProgramiv(program, parameter, &mut param_out);
+        param_out
     }
 
     unsafe fn get_program_info_log(&self, program: Self::Program) -> String {
